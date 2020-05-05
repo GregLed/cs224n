@@ -341,32 +341,32 @@ def main():
 
 
 if __name__ == '__main__':
-    #main()
-    #args = docopt(__doc__)
-    args = {}
-    args["--train-src"] = "./en_es_data/train.es"
-    args["--train-tgt"] = "./en_es_data/train.en"
-    args["--dev-src"] = "./en_es_data/dev.es"
-    args["--dev-tgt"] = "./en_es_data/dev.en"
-    args["--vocab"] = "vocab.json"
-    args["--seed"]=0
-    args["--batch-size"]=32
-    args["--embed-size"]=256
-    args["--hidden-size"]=256
-    args["--clip-grad"]=5.0
-    args["--log-every"]=10
-    args["--max-epoch"]=30
-    args["--patience"]=5
-    args["--max-num-trial"]=5
-    args["--lr-decay"]=0.5
-    args["--beam-size"]=5
-    args["--sample-size"]=5
-    args["--lr"]=0.001
-    args["--save-to"]='model.bin' 
-    args["--uniform-init"]=0.1
-    args["--valid-niter"]=2000
-    args["--dropout"]=0.3
-    args["--max-decoding-time-step"]=70
-    args['--cuda'] = False
+    main()
+    args = docopt(__doc__)
+    # args = {}
+    # args["--train-src"] = "./en_es_data/train.es"
+    # args["--train-tgt"] = "./en_es_data/train.en"
+    # args["--dev-src"] = "./en_es_data/dev.es"
+    # args["--dev-tgt"] = "./en_es_data/dev.en"
+    # args["--vocab"] = "vocab.json"
+    # args["--seed"]=0
+    # args["--batch-size"]=32
+    # args["--embed-size"]=256
+    # args["--hidden-size"]=256
+    # args["--clip-grad"]=5.0
+    # args["--log-every"]=10
+    # args["--max-epoch"]=30
+    # args["--patience"]=5
+    # args["--max-num-trial"]=5
+    # args["--lr-decay"]=0.5
+    # args["--beam-size"]=5
+    # args["--sample-size"]=5
+    # args["--lr"]=0.001
+    # args["--save-to"]='model.bin' 
+    # args["--uniform-init"]=0.1
+    # args["--valid-niter"]=2000
+    # args["--dropout"]=0.3
+    # args["--max-decoding-time-step"]=70
+    # args['--cuda'] = False
 
     train(args)
