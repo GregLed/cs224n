@@ -333,7 +333,11 @@ class NMT(nn.Module):
                                              )
         dec_state = (dec_state[0].squeeze(0), dec_state[1].squeeze(0))
         dec_hidden, dec_cell = dec_state
-        e_t = torch.bmm(dec_hidden.squeeze(0).unsqueeze(1), enc_hiddens_proj.permute(0,2,1))
+        if dec_hidden.ndim == 2:
+            dec_hidden = dec_hidden.unsqueeze(1)
+        else:
+            dec_hidden = dec_hidden.squeeze(0).unsqueeze(1)
+        e_t = torch.bmm(dec_hidden, enc_hiddens_proj.permute(0,2,1))
         e_t = e_t.permute(0,2,1).squeeze(2)
 
         ### END YOUR CODE
@@ -372,6 +376,8 @@ class NMT(nn.Module):
         alpha_t = F.softmax(e_t, dim=1)
         a_t = torch.bmm(alpha_t.unsqueeze(1), enc_hiddens)
         a_t = a_t.squeeze(1)
+        if dec_hidden.ndim==3 and a_t.ndim==2:
+            dec_hidden = dec_hidden.squeeze(1)
         U_t = torch.cat((dec_hidden, a_t), dim=1)
         V_t = self.combined_output_projection(U_t)
         O_t = self.dropout(V_t.tanh())
